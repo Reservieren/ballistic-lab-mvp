@@ -5,7 +5,7 @@
    - calcula distância e azimute (0° = Norte, sentido horário)
    - desenha marcadores e linha no canvas
 */
-
+//
 // Provavelmente vou esquecer dos parametros de configuração, então deixo tudo junto aqui:
 
 
@@ -20,7 +20,7 @@ const MAP_METERS = { width: 4000, height: 4000 }; //modificar posteriormente par
 /*
   dimensões em pixels do canvas (devem bater com o arquivo HTML)
   OBS: o canvas pode ser redimensionado via CSS, mas as coordenadas de clique
-  são relativas ao tamanho real do canvas (width/height atributos)
+  são relativas ao tamanho real do canvas (width/height atributos)... até onde testado rs
 */
 const CANVAS_PX = { width: 783, height: 768 };
 
@@ -41,7 +41,7 @@ const resetBtn = document.getElementById('resetBtn');
 const showGridCheckbox = document.getElementById('showGrid');
 
 /* ----- ESCALAS ----- */
-// metros por pixel (cada eixo separado para preservar não-quadratura de pixels)
+// metros por pixel (cada eixo separado para preservar não-quadratura de pixels), necessario reavaliar posteriormente....
 const metersPerPx = {
   x: MAP_METERS.width / CANVAS_PX.width,
   y: MAP_METERS.height / CANVAS_PX.height
@@ -121,13 +121,13 @@ function calcDistanceMeters(dx_m, dy_m) {
 /**
  * Calcula azimute (degrees) a partir de base -> alvo.
  * Convenção: 0° = Norte, 90° = Leste, 180° = Sul, 270° = Oeste.
- * Observação: no canvas, y cresce para baixo, então o eixo norte é -y.
+ * Observação: no canvas, y cresce para baixo, então o eixo norte é -y. ATT
  */
 function calcAzimuthDeg(dx_m, dy_m) {
   // atan2 retorna ângulo relativo ao eixo x positivo (em rad).
   // Para obter ângulo a partir do Norte, sentido horário:
   //   angle_rad = atan2(dx, -dy)
-  // porque queremos a componente leste (dx) como "x" para atan2,
+  // porque PRECISAMOS o componente leste (dx) como "x" para atan2,
   // e -dy para transformar o eixo y para "norte positivo".
   const angleRad = Math.atan2(dx_m, -dy_m);
   let angleDeg = angleRad * (180 / Math.PI);
@@ -179,7 +179,7 @@ function draw() {
 
   // desenhar mapa (se carregado)
   if (mapImg.complete) {
-    // desenha a imagem esticando/encaixando no canvas real
+    // desenha a imagem esticando/encaixando no canvas real (Revisar)
     ctx.drawImage(mapImg, 0, 0, canvas.width, canvas.height);
   } else {
     // retângulo fallback
