@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ballistic Lab — MVP</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Ballistic Lab — MVP</h1>
+    <p class="sub">Clique: 1) Base — 2) Alvo → calcula distância e azimute</p>
+  </header>
+
+  <main>
+    <section class="canvas-wrap">
+      <!-- mapa fica aqui.. -->
+      <canvas id="mapCanvas" width="783" height="768"></canvas>
+      <div class="controls">
+        <button id="resetBtn"><i class="fa-solid fa-arrow-rotate-right"></i>Resetar</button>
+        <label for="scaleCheckbox">
+          <input type="checkbox" id="showGrid" /> Mostrar grade
+        </label>
+      </div>
+    </section>
+
+    <aside class="readouts">
+      <div><strong>Base (px):</strong> <span id="basePx">—</span></div>
+      <div><strong>Alvo (px):</strong> <span id="targetPx">—</span></div>
+      <div><strong>Distância:</strong> <span id="distance">—</span> m</div>
+      <div><strong>Azimute:</strong> <span id="azimuth">—</span> ° (desde Norte, sentido horário)</div>
+      <div><small>Escala do mapa: 783×768 px → 4000×4000 m</small></div>
+    </aside>
+  </main>
+
+  <footer>
+    <small>Feito por Pedry • Ballistic Lab MVP • Escala: 4,0 km × 4,0 km</small>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
